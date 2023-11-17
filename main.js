@@ -14,10 +14,11 @@ playButton.addEventListener('click', function () {
 
     let cellNumber = setCellNumber();
     const difficultyClass = setDifficultyClass();
-    createGameboard(cellNumber, difficultyClass);
+    let boardGame = createGameboard(cellNumber, difficultyClass);
     console.log(`genero griglia composta da: ${cellNumber} celle`);
-    let cellBomb = createBomb(100);
-    console.log(cellBomb)
+    let cellBomb = createBomb(cellNumber);
+    console.log(`inserisco una bomba nelle celle numero: ${cellBomb}`);
+    gameLogic(boardGame, cellBomb);
 });
 
 // Set Cell Number
@@ -63,22 +64,24 @@ function createElementBoard(tag, className, content) {
 function resetGameboard() {
     const boardGame = document.querySelector('.board-game');
     boardGame.innerHTML = ''
+
 }
 
 // Generazione GameBoard
 function createGameboard(cellNumber, difficultyClass) {
     resetGameboard();
     const boardGame = document.querySelector('.board-game');
+    const fragment = new DocumentFragment()
 
     for (let i = 1; i <= cellNumber; i++) {
+        fragment
         const elementBoard = createElementBoard('div', difficultyClass, i);
-        boardGame.append(elementBoard);
-        elementBoard.addEventListener('click', function () {
-            console.log(`Hai cliccato la casella ${i}`)
-        })
+        fragment.append(elementBoard);
     }
-}
 
+    boardGame.append(fragment);
+    return boardGame
+}
 
 // Generazione bombe
 function createBomb(cellNumber) {
@@ -92,3 +95,17 @@ function createBomb(cellNumber) {
     return cellBomb
 }
 
+// Game logic
+function gameLogic(boardGame, cellBomb) {
+    boardGame.removeEventListener('click', function (event) { });
+    boardGame.addEventListener('click', function (event) {
+        let clickCell = event.target;
+        let contentCell = Number(clickCell.innerHTML);
+        console.log(`Hai cliccato la casella numero: ${contentCell}`)
+        if (cellBomb.includes(contentCell)) {
+            clickCell.classList.add('bomb')
+        } else {
+            clickCell.classList.add('safe')
+        }
+    });
+}
