@@ -1,0 +1,119 @@
+/* 
+*************
+Reset Default
+*************
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 
+-------------
+Header
+-------------
+*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand h1 {
+    font-weight: 600;
+}
+
+button {
+    padding: 5px 20px;
+}
+
+select {
+    padding: 5.5px 20px;
+    margin-left: 10px;
+    margin-right: 5px;
+    background-color: #EFEFEF;
+    border-radius: 2px;
+}
+
+select:hover {
+    background-color: #E5E5E5;
+}
+
+/* 
+-------------
+Main
+-------------
+*/
+
+main {
+    background-color: #7EFDD4;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board-game {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+}
+
+.board-game>* {
+    border: 0.5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cell--easy {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+.cell--medium {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.cell--hard {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+
+/* 
+-------------
+Footer
+-------------
+*/
+
+footer {
+    padding: 20px;
+}
+
+footer h6 {
+    font-size: 14px;
+    font-weight: 300;
+}
